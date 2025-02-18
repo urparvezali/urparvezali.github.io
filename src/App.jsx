@@ -6,16 +6,7 @@ export const App = () => {
 	const [userinfo, setUserinfo] = useState(null);
 
 	useEffect(() => {
-		const fetch_data = async () => {
-			const res = await fetch("https://codeforces.com/api/user.info?handles=urparvezali");
-			if (!res.ok) {
-				setInformation("Can't fetch user info!!");
-				return;
-			}
-			setUserinfo((await res.json()).result[0]);
-			setInformation("Got data!");
-		}
-		fetch_data();
+		fetch("https://codeforces.com/api/user.info?handles=urparvezali;turzo06").then(res => res.json()).then(data => setUserinfo(data.result[0])).catch(err => console.log(err));
 	}, []);
 
 	return (
